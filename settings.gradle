@@ -1,0 +1,37 @@
+
+plugins {
+  id 'me.champeau.includegit' version '0.2.0'
+}
+
+rootProject.name = 'commons-fx'
+
+def moduleDir = findRootProjectModuleDir(rootDir)
+
+gitRepositories {
+  checkoutsDirectory.set(file(moduleDir))
+  include("fonticons") {
+    uri = "https://github.com/MrKuip/fontIcons.git"
+    branch = "main"
+  }
+  include("commons-base") {
+    uri = "https://github.com/MrKuip/commons-base.git"
+    branch = "main"
+  }
+}
+
+def findRootProjectModuleDir(File dir) {
+    def result = null
+    while (dir != null) {
+        def modulesDir = new File(dir, "modules")
+        if (modulesDir.isDirectory()) {
+            if(new File(dir, "build.gradle").isFile())
+            {
+              result = modulesDir
+            }
+        }
+        dir = dir.parentFile
+    }
+    return result
+}
+
+

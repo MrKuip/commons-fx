@@ -1,0 +1,32 @@
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+
+plugins {
+  id 'java-library'
+  id 'eclipse'
+  id 'application'
+  id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group = "org.kku"
+version = "1.0.1"
+
+defaultTasks 'jar'
+
+apply from: 'build-eclipse.gradle'
+
+repositories {
+  mavenCentral()
+}
+
+javafx {
+    version = "24"
+    modules = [ 'javafx.controls' ]
+}
+
+dependencies {
+  implementation 'org.kku:fontIcons:1.0'
+  implementation 'org.kku:commons-base:1.0.1'
+}
+
