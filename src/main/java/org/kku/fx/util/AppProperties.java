@@ -13,7 +13,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import org.kku.common.util.Converters;
 import org.kku.common.util.Converters.Converter;
 import org.kku.common.util.Log;
 
