@@ -7,26 +7,33 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-
 import org.kku.common.util.Converters.Converter;
 import org.kku.common.util.Log;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 
-public abstract class AppProperties
+public class AppProperties
 {
+  private static final Map<String, AppProperties> m_propertiesByFileName = new HashMap<>();
+
   private final PropertyStore m_propertyStore;
 
-  protected AppProperties(String propertyFileName)
+  private AppProperties(String propertyFileName)
   {
     m_propertyStore = new PropertyStore(propertyFileName);
+  }
+
+  public static AppProperties get(String propertyFileName)
+  {
+    return m_propertiesByFileName.computeIfAbsent(propertyFileName, name -> new AppProperties(name));
   }
 
   public PropertyStore getStore()
@@ -172,15 +179,15 @@ public abstract class AppProperties
     }
 
     /*
-    * Get a changelistener that will set the value of this property
-    * 
-    * WATCH OUT: This changelistener cannot be parameterized because for instance a
-    * double property expects a Changelistener<? extends Number> and NOT
-    * ChangeListener<Double>. This won't even compile! The FX team decided on this
-    * because of lots of additional code. Now we are left with the baked pears!
-    * 
-    * @return
-    */
+     * Get a changelistener that will set the value of this property
+     * 
+     * WATCH OUT: This changelistener cannot be parameterized because for instance a
+     * double property expects a Changelistener<? extends Number> and NOT
+     * ChangeListener<Double>. This won't even compile! The FX team decided on this
+     * because of lots of additional code. Now we are left with the baked pears!
+     * 
+     * @return
+     */
     @SuppressWarnings(
     {
         "unchecked", "rawtypes"
@@ -213,8 +220,8 @@ public abstract class AppProperties
 
     public void putProperty(String propertyName, String stringValue)
     {
-      Log.log.fine("Mark properties[%s] dirty because property %s changed from %s to %s", getFilePath(),
-          propertyName, getProperties().get(propertyName), stringValue);
+      Log.log.fine("Mark properties[%s] dirty because property %s changed from %s to %s", getFilePath(), propertyName,
+          getProperties().get(propertyName), stringValue);
       if (stringValue == null)
       {
         removeProperty(propertyName);
