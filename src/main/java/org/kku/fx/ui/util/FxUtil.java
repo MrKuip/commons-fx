@@ -3,7 +3,6 @@ package org.kku.fx.ui.util;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -70,7 +69,7 @@ public class FxUtil
    */
   static public double getColumnCountWidth(int columnCount)
   {
-    return m_columnWidthByColumnCountMap.computeIfAbsent(columnCount, cc -> {
+    return m_columnWidthByColumnCountMap.computeIfAbsent(columnCount, _ -> {
       TextField field;
       @SuppressWarnings("unused")
       Scene scene;
@@ -106,7 +105,7 @@ public class FxUtil
 
   public static ChangeListener<? super Boolean> showWarning(Node node)
   {
-    return (o, oldValue, newValue) -> {
+    return (_, _, newValue) -> {
       if (newValue)
       {
         node.getStyleClass().add("warning");
@@ -121,7 +120,7 @@ public class FxUtil
   public static <T> Callback<ListView<T>, ListCell<T>> getCellFactoryWithImage(Function<T, String> nameFunction,
       Function<T, Image> imageFunction)
   {
-    return param -> getListCellWithImage(nameFunction, imageFunction);
+    return _ -> getListCellWithImage(nameFunction, imageFunction);
   }
 
   public static <T> ListCell<T> getListCellWithImage(Function<T, String> nameFunction, Function<T, Image> imageFunction)

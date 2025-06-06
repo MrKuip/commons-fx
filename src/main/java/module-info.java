@@ -11,4 +11,5 @@ module org.kku.fx
   exports org.kku.fx.util;
   exports org.kku.fx.ui.util;
   exports org.kku.fx.scene.control;
+  exports org.kku.fx.ui.dialog;
 }

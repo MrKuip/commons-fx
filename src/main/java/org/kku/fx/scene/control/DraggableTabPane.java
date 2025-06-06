@@ -1,11 +1,12 @@
 package org.kku.fx.scene.control;
 
 import java.util.stream.Collectors;
+import org.kku.common.util.AppSettings;
 import org.kku.common.util.SuppressFBWarnings;
+import org.kku.common.util.AppProperties.AppProperty;
 import org.kku.fonticons.ui.FxIcon.IconSize;
 import org.kku.fx.ui.util.FxIconUtil;
-import org.kku.fx.util.AppProperties.AppProperty;
-import org.kku.fx.util.AppSettings;
+import org.kku.fx.util.FxProperty;
 import org.tbee.javafx.scene.layout.MigPane;
 import javafx.beans.binding.StringExpression;
 import javafx.geometry.Point2D;
@@ -69,7 +70,7 @@ public class DraggableTabPane
     return tab;
   }
 
-  //source events handlers
+  // source events handlers
   public void setOnDragDetected()
   {
     setOnDragDetected(me -> {
@@ -77,7 +78,7 @@ public class DraggableTabPane
       Dragboard dragboard;
       ClipboardContent clipboardContent;
 
-      /* drag was detected, start drag-and-drop gesture*/
+      /* drag was detected, start drag-and-drop gesture */
       m_draggedTab = getSelectionModel().getSelectedItem();
       m_draggedNode = m_draggedTab.getContent();
 
@@ -134,8 +135,8 @@ public class DraggableTabPane
       draggedDialog.setY(mousePosition.getY());
       draggedDialog.setWidth(widthProperty.get(dialogWidth));
       draggedDialog.setHeight(heightProperty.get(dialogHeight));
-      draggedDialog.widthProperty().addListener(widthProperty.getChangeListener());
-      draggedDialog.heightProperty().addListener(heightProperty.getChangeListener());
+      draggedDialog.widthProperty().addListener(FxProperty.getChangeListener(widthProperty));
+      draggedDialog.heightProperty().addListener(FxProperty.getChangeListener(heightProperty));
 
       // Replace the dialog with the original tab
       draggedDialog.setOnCloseRequest((cr) -> {

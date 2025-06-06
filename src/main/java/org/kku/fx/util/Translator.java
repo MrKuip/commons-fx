@@ -1,17 +1,23 @@
 package org.kku.fx.util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.Properties;
 import org.kku.common.conf.Language;
+import org.kku.common.util.AppPreferences;
+import org.kku.common.util.Log;
+import org.kku.common.util.ResourceLoader;
 import org.kku.common.util.StringUtils;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -28,12 +34,10 @@ public class Translator
   private Map<String, StringProperty> m_translationPropertyByIdMap = new HashMap<>();
   private ObjectProperty<Language> m_languageProperty = new SimpleObjectProperty<>();
 
-  private String bundleName = "translations/messages";
-
   private Translator()
   {
-    m_languageProperty.addListener((o, oldValue, newValue) -> changeLanguage(newValue));
-    m_languageProperty.bind(AppPreferences.languagePreference.property());
+    m_languageProperty.addListener((_, _, newValue) -> changeLanguage(newValue));
+    m_languageProperty.bind(FxProperty.property(AppPreferences.languagePreference));
   }
 
   private void changeLanguage(Language language)
@@ -46,7 +50,7 @@ public class Translator
   {
     StringProperty stringProperty;
 
-    stringProperty = m_instance.m_translationPropertyByIdMap.computeIfAbsent(text, (k) -> new SimpleStringProperty());
+    stringProperty = m_instance.m_translationPropertyByIdMap.computeIfAbsent(text, (_) -> new SimpleStringProperty());
     stringProperty.set(getTranslatedText(text));
 
     return stringProperty;
@@ -91,8 +95,7 @@ public class Translator
       }
       catch (IOException e)
       {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+        Log.log.error(e, "Problem saving untranslated texts");
       }
     }
   }
@@ -103,7 +106,7 @@ public class Translator
 
     // First choice is translations from the current language setting.
     reload(m_languageProperty.get().getLocale());
-    // Second choice is the translations in english.
+    // Second choice is the translations in English.
     reload(Locale.ENGLISH);
     // Last choice is the untranslated key (as programmed in the software)
 
@@ -114,21 +117,62 @@ public class Translator
 
   private void reload(Locale locale)
   {
-    ResourceBundle bundle;
+    getBundleNameList(locale).forEach(bundleName -> {
+      String resourceName;
 
-    bundle = ResourceBundle.getBundle(bundleName, locale);
-    if (bundle != null)
+      resourceName = "translations/messages" + bundleName + ".properties";
+      Log.log.fine("try to load %s", resourceName);
+      try
+      {
+        ResourceLoader.getInstance().getResources(resourceName).forEach(resource -> {
+          try (InputStream is = resource.openStream())
+          {
+            Properties properties;
+            Log.log.info("Translator: Load translations %s from %s", locale, resource);
+
+            properties = new Properties();
+            try
+            {
+              properties.load(is);
+              properties.entrySet().forEach(entry -> {
+                m_translationByIdMap.putIfAbsent(toResourceKey(entry.getKey().toString()), entry.getValue().toString());
+              });
+            }
+            catch (IOException e)
+            {
+              Log.log.error("Failed to load properties from resource: " + resource);
+            }
+          }
+          catch (IOException e)
+          {
+            Log.log.error("Failed to load resource: " + resource);
+          }
+        });
+      }
+      catch (IOException e)
+      {
+        Log.log.error("Failed to load resource: " + resourceName);
+      }
+    });
+
+  }
+
+  private List<String> getBundleNameList(Locale locale)
+  {
+    List<String> bundleNameList;
+
+    bundleNameList = new ArrayList<>();
+    if (!StringUtils.isEmpty(locale.getLanguage()))
     {
-      bundle.keySet().forEach(key -> {
-        String resourceKey;
-        String value;
-
-        resourceKey = toResourceKey(key);
-        value = bundle.getString(key);
-
-        m_translationByIdMap.putIfAbsent(resourceKey, value);
-      });
+      if (!StringUtils.isEmpty(locale.getCountry()))
+      {
+        bundleNameList.add("_" + locale.getLanguage() + "_" + locale.getCountry());
+      }
+      bundleNameList.add("_" + locale.getLanguage());
     }
+    bundleNameList.add("");
+
+    return bundleNameList;
   }
 
   private static String toResourceKey(String text)
