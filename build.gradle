@@ -14,6 +14,11 @@ version = "1.0.1"
 
 defaultTasks 'jar'
 
+test
+{
+  useJUnitPlatform()
+}
+
 apply from: 'build-eclipse.gradle'
 
 repositories {
@@ -29,5 +34,8 @@ dependencies {
   implementation 'org.kku:fontIcons:1.0'
   implementation 'org.kku:commons-base:1.0.1'
   implementation 'com.miglayout:miglayout-javafx:11.4.2'
+
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+  testImplementation 'org.junit.platform:junit-platform-launcher'
 }
 
