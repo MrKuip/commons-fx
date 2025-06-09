@@ -41,12 +41,13 @@ public class DraggableTabPane
     setOnDragDetected();
   }
 
-  public Tab createTab(String iconName, StringExpression nameExpression)
+  public Tab createTab(String id, String iconName, StringExpression nameExpression)
   {
     Tab tab;
     MigPane iconPane;
 
     tab = new Tab();
+    tab.setId(id);
     tab.textProperty().bind(nameExpression);
     tab.getStyleClass().add("draggable-tab");
     tab.setUserData(this);

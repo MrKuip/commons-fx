@@ -2,7 +2,9 @@ package org.kku.fx.ui.dialog;
 
 import static org.kku.fx.ui.util.TranslateUtil.translate;
 import org.kku.common.util.AppProperties.AppProperty;
+import org.kku.common.util.AppSettings;
 import org.kku.fx.ui.util.FxIconUtil;
+import org.kku.fx.ui.util.FxSettingsUtil;
 import org.kku.fx.ui.util.RootStage;
 import org.kku.fx.ui.util.TranslateUtil;
 import javafx.scene.Node;
@@ -26,6 +28,7 @@ abstract public class AbstractPreferencesDialog
     TabPane content;
 
     content = new TabPane();
+    FxSettingsUtil.initSelectedTabSetting(AppSettings.SELECTED_ID.forSubject(getClass()), content);
     initContent(content);
 
     m_dialog = new Dialog<>();
@@ -52,6 +55,7 @@ abstract public class AbstractPreferencesDialog
     Tab tab;
 
     tab = translate(new Tab(text));
+    tab.setId(text);
     tab.setContent(content);
     tab.setClosable(false);
 
