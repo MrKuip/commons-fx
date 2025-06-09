@@ -1,9 +1,9 @@
 package org.kku.fx.scene.control;
 
 import java.util.stream.Collectors;
+import org.kku.common.util.AppProperties.AppProperty;
 import org.kku.common.util.AppSettings;
 import org.kku.common.util.SuppressFBWarnings;
-import org.kku.common.util.AppProperties.AppProperty;
 import org.kku.fonticons.ui.FxIcon.IconSize;
 import org.kku.fx.ui.util.FxIconUtil;
 import org.kku.fx.util.FxProperty;
@@ -139,7 +139,7 @@ public class DraggableTabPane
       draggedDialog.heightProperty().addListener(FxProperty.getChangeListener(heightProperty));
 
       // Replace the dialog with the original tab
-      draggedDialog.setOnCloseRequest((cr) -> {
+      draggedDialog.setOnCloseRequest((_) -> {
         Long index;
 
         draggedTab.setContent(draggedNode);

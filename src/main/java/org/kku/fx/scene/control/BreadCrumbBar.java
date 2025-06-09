@@ -24,7 +24,7 @@ public class BreadCrumbBar<T>
 
   public BreadCrumbBar()
   {
-    m_treeItem.addListener((o, oldValue, newValue) -> { setModel(newValue); });
+    m_treeItem.addListener((_, _, newValue) -> { setModel(newValue); });
     setSpacing(0.0);
     setPadding(Insets.EMPTY);
   }
@@ -44,7 +44,7 @@ public class BreadCrumbBar<T>
     Button button;
 
     button = new BreadCrumbButton(item.getValue().toString());
-    button.setOnAction((ae) -> {
+    button.setOnAction((_) -> {
       m_selectedTreeItem.setValue(item);
     });
 
@@ -94,9 +94,11 @@ public class BreadCrumbBar<T>
       setPickOnBounds(false);
 
       // This works around a bug in javaFX.
-      // If this button is made small enough that 3 dots appear it will create a bounding box that
-      //   takes into consideration the location of the mnemomic of the original text (which is very
-      //   small hence the 3 dots)
+      // If this button is made small enough that 3 dots appear it will create a
+      // bounding box that
+      // takes into consideration the location of the mnemomic of the original text
+      // (which is very
+      // small hence the 3 dots)
       setMnemonicParsing(false);
 
       if (!isFirst())
@@ -107,6 +109,7 @@ public class BreadCrumbBar<T>
 
     /**
      * Gets the crumb arrow with
+     * 
      * @return
      */
     public double getArrowWidth()
@@ -118,6 +121,7 @@ public class BreadCrumbBar<T>
      * Create an arrow path
      * 
      * Based upon Uwe / Andy Till code snippet found here:
+     * 
      * @see http://ustesis.wordpress.com/2013/11/04/implementing-breadcrumbs-in-javafx/
      * @return
      */
@@ -135,10 +139,10 @@ public class BreadCrumbBar<T>
 
       // build the following shape (or home without left arrow)
 
-      //   --------
-      //  \         \
-      //  /         /
-      //   --------
+      // --------
+      // \ \
+      // / /
+      // --------
       path = new Path();
 
       // begin in the upper left corner

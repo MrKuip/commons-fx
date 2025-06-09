@@ -16,13 +16,13 @@ public class FxProperty
   {
     SimpleObjectProperty<T> sop = new SimpleObjectProperty<T>(appProperty.get());
 
-    appProperty.addListener((oldValue, newValue) -> {
+    appProperty.addListener((_, newValue) -> {
       if (!Objects.equals(newValue, sop.get()))
       {
         sop.set(newValue);
       }
     });
-    sop.addListener((o, oldValue, newValue) -> {
+    sop.addListener((_, _, newValue) -> {
       if (!Objects.equals(newValue, appProperty.get()))
       {
         appProperty.set(newValue);
@@ -45,7 +45,7 @@ public class FxProperty
   @SuppressWarnings("rawtypes")
   public static <T> ChangeListener getChangeListener(AppProperty<T> appProperty)
   {
-    return (observable, oldValue, newValue) -> {
+    return (_, _, newValue) -> {
       appProperty.set((T) newValue);
     };
   }
