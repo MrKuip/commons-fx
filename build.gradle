@@ -35,7 +35,7 @@ dependencies {
   implementation 'org.kku:commons-base:1.0.1'
   implementation 'com.miglayout:miglayout-javafx:11.4.2'
 
-  testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.13.1'
   testImplementation 'org.junit.platform:junit-platform-launcher'
 }
 
