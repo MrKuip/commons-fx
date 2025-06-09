@@ -44,6 +44,11 @@ public class BreadCrumbBar<T>
     Button button;
 
     button = new BreadCrumbButton(item.getValue().toString());
+    if (item.getGraphic() != null)
+    {
+      button.setGraphic(item.getGraphic());
+      button.setText("");
+    }
     button.setOnAction((_) -> {
       m_selectedTreeItem.setValue(item);
     });
