@@ -1,7 +1,6 @@
 package org.kku.fx.ui.util;
 
 import org.kku.common.util.AppProperties.AppProperty;
-import org.kku.common.util.StringUtils;
 import javafx.application.Platform;
 import javafx.scene.control.TabPane;
 
@@ -19,15 +18,9 @@ public class FxSettingsUtil
     // runLater because this code must run AFTER all the tab's have been created!
     Platform.runLater(() -> {
       // Select the tab that was previously selected (in a previous run of the jvm)
-      if (!StringUtils.isEmpty(selectedIdProperty.get()))
-      {
-        tabPane.getTabs().stream().filter(t -> t.getId().equals(selectedIdProperty.get())).findFirst()
-            .ifPresentOrElse(t -> {
-              tabPane.getSelectionModel().select(t);
-            }, () -> {
-              tabPane.getSelectionModel().select(0);
-            });
-      }
+      tabPane.getTabs().stream().filter(t -> t.getId().equals(selectedIdProperty.get())).findFirst().ifPresent(t -> {
+        tabPane.getSelectionModel().select(t);
+      });
 
       // Remember the selected tab in a setting.
       tabPane.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
