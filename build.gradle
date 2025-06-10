@@ -17,7 +17,14 @@ defaultTasks 'jar'
 test
 {
   useJUnitPlatform()
+  testLogging {
+    showStandardStreams = true 
+    afterTest { descriptor , result -> 
+      logger.lifecycle("Test: " + descriptor.getClassName() + " " + descriptor.getName() + " -> " + result)
+    }
+  }
 }
+
 
 apply from: 'build-eclipse.gradle'
 
