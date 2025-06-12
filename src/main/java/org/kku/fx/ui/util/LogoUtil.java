@@ -27,11 +27,23 @@ public class LogoUtil
     return instance._getLogoList();
   }
 
+  /**
+   * Get a logo that has a size that is closest to the maxSize but not greater
+   * than the maxSize
+   * 
+   * @param maxSize
+   * @return
+   */
+  public static Image getLogo(int maxSize)
+  {
+    return getLogoList().reversed().stream().filter(image -> image.getHeight() <= maxSize).findFirst().get();
+  }
+
   private List<Image> _getLogoList()
   {
     if (m_logoList == null)
     {
-      m_logoList = IntStream.rangeClosed(10, 200).mapToObj(px -> load(px)).filter(Objects::nonNull).toList();
+      m_logoList = IntStream.rangeClosed(10, 400).mapToObj(px -> load(px)).filter(Objects::nonNull).toList();
     }
 
     return instance.m_logoList;
