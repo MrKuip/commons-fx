@@ -12,7 +12,7 @@ public class FxIconUtil
 
   public static Node createIconNode(String iconName)
   {
-    return createIconNode(iconName, IconSize.SMALL);
+    return createIconNode(iconName, IconSize.REGULAR);
   }
 
   public static Node createIconNode(String iconName, IconSize iconSize)

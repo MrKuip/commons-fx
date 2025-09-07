@@ -47,7 +47,7 @@ public class Notifications
   {
     Node node;
 
-    node = new MessageItemView(new FxIcon("information").size(IconSize.LARGE).getNode(), titleExpression,
+    node = new MessageItemView(new FxIcon("mdi-information").size(IconSize.LARGE).getNode(), titleExpression,
         textExpression, MESSAGE_SHOW_DURATION_IN_SECONDS);
 
     m_instance.getView().getChildren().add(0, node);
@@ -98,7 +98,7 @@ public class Notifications
       progressBar.setMaxWidth(Double.MAX_VALUE);
       progressBar.setMaxHeight(8);
       progressBar.progressProperty().bind(task.progressProperty());
-      cancelButton = new Button("Cancel", FxIconUtil.createIconNode("mdi-cancel", IconSize.SMALL));
+      cancelButton = new Button("Cancel", FxIconUtil.createIconNode("mdi-cancel", IconSize.REGULAR));
       cancelButton.setTooltip(new Tooltip("Cancel Task"));
       cancelButton.setOnAction((_) -> {
         task.cancel();

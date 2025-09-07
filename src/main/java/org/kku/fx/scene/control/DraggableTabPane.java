@@ -55,12 +55,12 @@ public class DraggableTabPane
     tab.setClosable(false);
 
     iconPane = new MigPane("", "0[]0[]0");
-    iconPane.getChildren().add(FxIconUtil.createFxIcon("mdi-drag", IconSize.SMALL).color(Color.GREY).getNode());
+    iconPane.getChildren().add(FxIconUtil.createFxIcon("mdi-drag", IconSize.REGULAR).color(Color.GREY).getNode());
     if (iconName != null)
     {
       Node icon;
 
-      icon = FxIconUtil.createIconNode(iconName, IconSize.SMALL);
+      icon = FxIconUtil.createIconNode(iconName, IconSize.REGULAR);
       icon.prefHeight(300);
       iconPane.getChildren().add(icon);
     }
