@@ -6,6 +6,7 @@ plugins {
 rootProject.name = 'commons-fx'
 
 def moduleDir = findRootProjectModuleDir(rootDir)
+println "moduleDir =" + moduleDir
 
 gitRepositories {
   checkoutsDirectory.set(file(moduleDir))
@@ -19,17 +20,25 @@ gitRepositories {
   }
 }
 
-def findRootProjectModuleDir(File dir) {
+def findRootProjectModuleDir(File rootDir) {
     def result = null
+    def dir = rootDir
     while (dir != null) {
+        println dir
         def modulesDir = new File(dir, "modules")
         if (modulesDir.isDirectory()) {
             if(new File(dir, "build.gradle").isFile())
             {
               result = modulesDir
+              break;
             }
         }
         dir = dir.parentFile
+    }
+
+    if(result == null)
+    {
+      return new File(rootDir, "modules")
     }
     return result
 }
