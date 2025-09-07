@@ -13,8 +13,6 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
 
@@ -118,17 +116,15 @@ public class FxUtil
   }
 
   public static <T> Callback<ListView<T>, ListCell<T>> getCellFactoryWithImage(Function<T, String> nameFunction,
-      Function<T, Image> imageFunction)
+      Function<T, Node> imageFunction)
   {
     return _ -> getListCellWithImage(nameFunction, imageFunction);
   }
 
-  public static <T> ListCell<T> getListCellWithImage(Function<T, String> nameFunction, Function<T, Image> imageFunction)
+  public static <T> ListCell<T> getListCellWithImage(Function<T, String> nameFunction, Function<T, Node> imageFunction)
   {
     return new ListCell<>()
     {
-      private final ImageView imageView = new ImageView();
-
       @Override
       protected void updateItem(T language, boolean empty)
       {
@@ -141,10 +137,7 @@ public class FxUtil
         }
         else
         {
-          imageView.setImage(imageFunction.apply(language));
-          imageView.setFitHeight(16);
-          imageView.setFitWidth(24);
-          setGraphic(imageView);
+          setGraphic(imageFunction.apply(language));
           setText(nameFunction.apply(language));
         }
       }
