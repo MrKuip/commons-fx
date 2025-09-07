@@ -30,7 +30,7 @@ public class CollapsableButtonPane
     collapsableButtonPane.setPadding(new Insets(0, 10, 0, 10));
     collapsableButtonPane.setAlignment(Pos.CENTER);
 
-    filterButton = new Button(null, FxIconUtil.createIconNode("filter-menu"));
+    filterButton = new Button(null, FxIconUtil.createIconNode("mdi-filter-menu"));
     filterButton.setOnAction((_) -> toggleExpanded());
 
     collapsableButtonPane.getChildren().add(filterButton);

@@ -9,8 +9,8 @@ def moduleDir = findRootProjectModuleDir(rootDir)
 
 gitRepositories {
   checkoutsDirectory.set(file(moduleDir))
-  include("fontIcons") {
-    uri = "https://github.com/MrKuip/fontIcons.git"
+  include("iconify4j") {
+    uri = "https://github.com/MrKuip/Iconify4J.git"
     branch = "main"
   }
   include("commons-base") {

@@ -3,7 +3,7 @@ module org.kku.fx
   requires transitive javafx.controls;
   requires transitive javafx.graphics;
 
-  requires transitive org.kku.fonticons;
+  requires transitive org.kku.iconify4j;
   requires transitive org.kku.common;
   requires transitive com.miglayout.javafx;
   requires transitive com.miglayout.core;

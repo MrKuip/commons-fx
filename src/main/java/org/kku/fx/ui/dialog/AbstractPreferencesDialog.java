@@ -66,7 +66,7 @@ abstract public class AbstractPreferencesDialog
   {
     Button button;
 
-    button = translate(new Button("", FxIconUtil.createIconNode("restore")));
+    button = translate(new Button("", FxIconUtil.createIconNode("mdi-restore")));
     button.setOnAction((_) -> property.reset());
 
     return button;

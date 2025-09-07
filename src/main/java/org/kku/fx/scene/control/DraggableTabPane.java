@@ -4,9 +4,9 @@ import java.util.stream.Collectors;
 import org.kku.common.util.AppProperties.AppProperty;
 import org.kku.common.util.AppSettings;
 import org.kku.common.util.SuppressFBWarnings;
-import org.kku.fonticons.ui.FxIcon.IconSize;
 import org.kku.fx.ui.util.FxIconUtil;
 import org.kku.fx.util.FxProperty;
+import org.kku.iconify.ui.FxIcon.IconSize;
 import org.tbee.javafx.scene.layout.MigPane;
 import javafx.beans.binding.StringExpression;
 import javafx.geometry.Point2D;
@@ -55,7 +55,7 @@ public class DraggableTabPane
     tab.setClosable(false);
 
     iconPane = new MigPane("", "0[]0[]0");
-    iconPane.getChildren().add(FxIconUtil.createFxIcon("drag", IconSize.SMALL).fillColor(Color.GREY).getIconLabel());
+    iconPane.getChildren().add(FxIconUtil.createFxIcon("mdi-drag", IconSize.SMALL).color(Color.GREY).getNode());
     if (iconName != null)
     {
       Node icon;

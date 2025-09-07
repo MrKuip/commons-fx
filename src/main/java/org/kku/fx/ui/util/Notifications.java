@@ -1,7 +1,7 @@
 package org.kku.fx.ui.util;
 
-import org.kku.fonticons.ui.FxIcon;
-import org.kku.fonticons.ui.FxIcon.IconSize;
+import org.kku.iconify.ui.FxIcon;
+import org.kku.iconify.ui.FxIcon.IconSize;
 import org.tbee.javafx.scene.layout.MigPane;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -47,7 +47,7 @@ public class Notifications
   {
     Node node;
 
-    node = new MessageItemView(new FxIcon("information").size(IconSize.LARGE).getIconLabel(), titleExpression,
+    node = new MessageItemView(new FxIcon("information").size(IconSize.LARGE).getNode(), titleExpression,
         textExpression, MESSAGE_SHOW_DURATION_IN_SECONDS);
 
     m_instance.getView().getChildren().add(0, node);
@@ -88,7 +88,7 @@ public class Notifications
 
       getStyleClass().add("task-item");
 
-      graphic = FxIconUtil.createIconNode("magnify", IconSize.LARGE);
+      graphic = FxIconUtil.createIconNode("mdi-magnify", IconSize.LARGE);
       titleText = new Label();
       titleText.textProperty().bind(task.titleProperty());
       titleText.setStyle("-fx-font-weight: bold");
@@ -98,7 +98,7 @@ public class Notifications
       progressBar.setMaxWidth(Double.MAX_VALUE);
       progressBar.setMaxHeight(8);
       progressBar.progressProperty().bind(task.progressProperty());
-      cancelButton = new Button("Cancel", FxIconUtil.createIconNode("cancel", IconSize.SMALLER));
+      cancelButton = new Button("Cancel", FxIconUtil.createIconNode("mdi-cancel", IconSize.SMALL));
       cancelButton.setTooltip(new Tooltip("Cancel Task"));
       cancelButton.setOnAction((_) -> {
         task.cancel();
