@@ -74,7 +74,7 @@ public class Translator
       translatedText = text;
       debugUntranslatedText(translatedText);
     }
-    return translatedText;
+    return translatedText.intern();
   }
 
   private static void debugUntranslatedText(String unTranslatedText)
