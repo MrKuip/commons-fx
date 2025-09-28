@@ -1,5 +1,6 @@
 package org.kku.fx.ui.dialog;
 
+import org.kku.common.util.Project;
 import org.kku.fx.ui.util.RootStage;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -23,7 +24,7 @@ public class FxDialog<R>
     content.getStyleClass().add("undecorated-dialog");
 
     scene = new Scene(content);
-    scene.getStylesheets().add("module-resources/jdiskusage.css");
+    scene.getStylesheets().add("module-resources/" + Project.getInstance().getName().toLowerCase() + ".css");
 
     m_stage = new Stage();
     m_stage.initOwner(RootStage.get());

@@ -2,6 +2,7 @@ package org.kku.fx.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import org.kku.common.test.BaseTest;
 import org.kku.common.util.AppProperties;
 import org.kku.common.util.AppProperties.AppProperty;
 import org.kku.common.util.AppProperties.AppPropertyType;
@@ -9,6 +10,7 @@ import org.kku.common.util.Converters;
 import javafx.beans.property.ObjectProperty;
 
 public class FxPropertyTest
+  extends BaseTest
 {
   public FxPropertyTest()
   {
