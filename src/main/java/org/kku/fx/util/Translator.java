@@ -36,7 +36,7 @@ public class Translator
 
   private Translator()
   {
-    m_languageProperty.addListener((_, _, newValue) -> changeLanguage(newValue));
+    m_languageProperty.addListener((a, b, newValue) -> changeLanguage(newValue));
     m_languageProperty.bind(FxProperty.property(AppPreferences.languagePreference));
   }
 
@@ -50,7 +50,7 @@ public class Translator
   {
     StringProperty stringProperty;
 
-    stringProperty = m_instance.m_translationPropertyByIdMap.computeIfAbsent(text, (_) -> new SimpleStringProperty());
+    stringProperty = m_instance.m_translationPropertyByIdMap.computeIfAbsent(text, (a) -> new SimpleStringProperty());
     stringProperty.set(getTranslatedText(text));
 
     return stringProperty;

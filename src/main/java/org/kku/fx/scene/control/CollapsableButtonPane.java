@@ -31,16 +31,16 @@ public class CollapsableButtonPane
     collapsableButtonPane.setAlignment(Pos.CENTER);
 
     filterButton = new Button(null, FxIconUtil.createIconNode("mdi-filter-menu"));
-    filterButton.setOnAction((_) -> toggleExpanded());
+    filterButton.setOnAction((a) -> toggleExpanded());
 
     collapsableButtonPane.getChildren().add(filterButton);
 
     setLeft(collapsableButtonPane);
 
-    rightProperty().addListener((_, _, _) -> evaluateExpanded());
-    topProperty().addListener((_, _, _) -> evaluateExpanded());
-    bottomProperty().addListener((_, _, _) -> evaluateExpanded());
-    centerProperty().addListener((_, _, _) -> evaluateExpanded());
+    rightProperty().addListener((a, b, c) -> evaluateExpanded());
+    topProperty().addListener((a, b, c) -> evaluateExpanded());
+    bottomProperty().addListener((a, b, c) -> evaluateExpanded());
+    centerProperty().addListener((a, b, c) -> evaluateExpanded());
   }
 
   public BooleanProperty expandedProperty()

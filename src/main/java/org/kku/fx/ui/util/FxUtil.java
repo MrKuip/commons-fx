@@ -67,7 +67,7 @@ public class FxUtil
    */
   static public double getColumnCountWidth(int columnCount)
   {
-    return m_columnWidthByColumnCountMap.computeIfAbsent(columnCount, _ -> {
+    return m_columnWidthByColumnCountMap.computeIfAbsent(columnCount, a -> {
       TextField field;
       @SuppressWarnings("unused")
       Scene scene;
@@ -103,7 +103,7 @@ public class FxUtil
 
   public static ChangeListener<? super Boolean> showWarning(Node node)
   {
-    return (_, _, newValue) -> {
+    return (a, b, newValue) -> {
       if (newValue)
       {
         node.getStyleClass().add("warning");
@@ -118,7 +118,7 @@ public class FxUtil
   public static <T> Callback<ListView<T>, ListCell<T>> getCellFactoryWithImage(Function<T, String> nameFunction,
       Function<T, Node> imageFunction)
   {
-    return _ -> getListCellWithImage(nameFunction, imageFunction);
+    return a -> getListCellWithImage(nameFunction, imageFunction);
   }
 
   public static <T> ListCell<T> getListCellWithImage(Function<T, String> nameFunction, Function<T, Node> imageFunction)

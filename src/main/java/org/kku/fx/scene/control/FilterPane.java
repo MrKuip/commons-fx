@@ -85,7 +85,7 @@ public class FilterPane<T>
     m_filterTypePaneByTypeMap.clear();
 
     m_filterSet.forEach((filter) -> {
-      if (m_filterByTypeMap.computeIfAbsent(filter.getFilterKey(), (_) -> new HashSet<>()).add(filter))
+      if (m_filterByTypeMap.computeIfAbsent(filter.getFilterKey(), (a) -> new HashSet<>()).add(filter))
       {
         Pane filterTypePane;
         Node filterValueNode;
@@ -93,7 +93,7 @@ public class FilterPane<T>
         filterValueNode = createFilterValueNode(filter);
 
         filterTypePane = m_filterTypePaneByTypeMap.computeIfAbsent(filter.getFilterKey(),
-            (_) -> createFilterTypePane(filter));
+            (a) -> createFilterTypePane(filter));
         if (m_filterByTypeMap.get(filter.getFilterKey()).size() > 1)
         {
           filterTypePane.getChildren().add(getFilterTypePaneText(translatedTextProperty("or")));
@@ -147,7 +147,7 @@ public class FilterPane<T>
     filterNode.setUserData(filter);
     filterNode.disableProperty().bind(filter.disabledProperty());
 
-    closeNode.addEventFilter(MouseEvent.MOUSE_CLICKED, (_) -> {
+    closeNode.addEventFilter(MouseEvent.MOUSE_CLICKED, (a) -> {
       removeFilters(filter);
       activateFilter();
     });
@@ -191,7 +191,7 @@ public class FilterPane<T>
         m_activateFilterButton = translate(
             new Button("Activate filter", FxIconUtil.createIconNode("mdi-filter-check", IconSize.REGULAR)));
         m_activateFilterButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-        m_activateFilterButton.setOnAction((_) -> {
+        m_activateFilterButton.setOnAction((a) -> {
           activateFilter();
         });
         m_filterActivationPane.getChildren().add(m_activateFilterButton);
@@ -199,7 +199,7 @@ public class FilterPane<T>
         m_clearFilterButton = translate(
             new Button("Clear filter", FxIconUtil.createIconNode("mdi-filter-remove", IconSize.REGULAR)));
         m_clearFilterButton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-        m_clearFilterButton.setOnAction((_) -> {
+        m_clearFilterButton.setOnAction((a) -> {
           Filter[] filters;
 
           filters = getFilterSet().stream().filter(Filter::isDisabled).toArray(Filter[]::new);

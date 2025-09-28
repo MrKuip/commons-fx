@@ -23,7 +23,7 @@ public class FxSettingsUtil
       });
 
       // Remember the selected tab in a setting.
-      tabPane.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
+      tabPane.getSelectionModel().selectedItemProperty().addListener((a, b, newValue) -> {
         selectedIdProperty.set(newValue.getId());
       });
     });

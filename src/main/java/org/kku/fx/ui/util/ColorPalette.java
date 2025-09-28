@@ -64,7 +64,7 @@ public class ColorPalette
       mi_preference = AppPreferences.createPreference("color" + index, Converters.getColorConverter(),
           Color.web(defaultColor));
 
-      mi_preference.addListener((_, _) -> {
+      mi_preference.addListener((a, b) -> {
         ChartStyleSheet.getInstance().refresh();
       });
 
@@ -90,7 +90,7 @@ public class ColorPalette
 
     public ObservableValue<Color> colorProperty(double brightness)
     {
-      return colorProperty().map((_) -> getColor(brightness));
+      return colorProperty().map((a) -> getColor(brightness));
     }
 
     public Color getColor(double brightness)

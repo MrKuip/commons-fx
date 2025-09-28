@@ -78,7 +78,7 @@ public class Notifications
       super("wrap3", "[][grow][]", "");
 
       mi_task = task;
-      mi_task.stateProperty().addListener((_, _, newValue) -> {
+      mi_task.stateProperty().addListener((a, b, newValue) -> {
         if (newValue == Worker.State.CANCELLED || newValue == Worker.State.FAILED || newValue == Worker.State.READY
             || newValue == Worker.State.SUCCEEDED)
         {
@@ -100,7 +100,7 @@ public class Notifications
       progressBar.progressProperty().bind(task.progressProperty());
       cancelButton = new Button("Cancel", FxIconUtil.createIconNode("mdi-cancel", IconSize.REGULAR));
       cancelButton.setTooltip(new Tooltip("Cancel Task"));
-      cancelButton.setOnAction((_) -> {
+      cancelButton.setOnAction((a) -> {
         task.cancel();
       });
 
@@ -128,7 +128,7 @@ public class Notifications
           new KeyFrame(Duration.seconds(2), new KeyValue(opacityProperty(), 1.0)),
           new KeyFrame(Duration.seconds(durationInSeconds - 2), new KeyValue(opacityProperty(), 1.0)),
           new KeyFrame(Duration.seconds(durationInSeconds), new KeyValue(opacityProperty(), 0.1)));
-      timeline.setOnFinished((_) -> m_view.getChildren().remove(MessageItemView.this));
+      timeline.setOnFinished((a) -> m_view.getChildren().remove(MessageItemView.this));
       timeline.play();
 
       getStyleClass().add("notification-item");

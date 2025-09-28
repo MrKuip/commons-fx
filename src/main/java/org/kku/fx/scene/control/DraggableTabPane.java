@@ -140,7 +140,7 @@ public class DraggableTabPane
       draggedDialog.heightProperty().addListener(FxProperty.getChangeListener(heightProperty));
 
       // Replace the dialog with the original tab
-      draggedDialog.setOnCloseRequest((_) -> {
+      draggedDialog.setOnCloseRequest((a) -> {
         Long index;
 
         draggedTab.setContent(draggedNode);

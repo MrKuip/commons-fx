@@ -38,7 +38,7 @@ abstract public class AbstractPreferencesDialog
     m_dialog.initModality(Modality.APPLICATION_MODAL);
     m_dialog.setTitle("Preferences");
     TranslateUtil.bind(m_dialog.titleProperty());
-    m_dialog.getDialogPane().getScene().getWindow().setOnCloseRequest((_) -> m_dialog.close());
+    m_dialog.getDialogPane().getScene().getWindow().setOnCloseRequest((a) -> m_dialog.close());
     m_dialog.getDialogPane().setMinSize(600, 400);
     m_dialog.showAndWait();
   }
@@ -67,7 +67,7 @@ abstract public class AbstractPreferencesDialog
     Button button;
 
     button = translate(new Button("", FxIconUtil.createIconNode("mdi-restore")));
-    button.setOnAction((_) -> property.reset());
+    button.setOnAction((a) -> property.reset());
 
     return button;
   }

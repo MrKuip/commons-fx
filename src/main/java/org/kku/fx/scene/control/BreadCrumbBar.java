@@ -24,7 +24,7 @@ public class BreadCrumbBar<T>
 
   public BreadCrumbBar()
   {
-    m_treeItem.addListener((_, _, newValue) -> { setModel(newValue); });
+    m_treeItem.addListener((a, b, newValue) -> { setModel(newValue); });
     setSpacing(0.0);
     setPadding(Insets.EMPTY);
   }
@@ -49,7 +49,7 @@ public class BreadCrumbBar<T>
       button.setGraphic(item.getGraphic());
       button.setText("");
     }
-    button.setOnAction((_) -> {
+    button.setOnAction((a) -> {
       m_selectedTreeItem.setValue(item);
     });
 
