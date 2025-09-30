@@ -53,6 +53,6 @@ dependencies {
 }
 
 application {
-  mainClass.set('org.kku.fx.iconify.main.IconViewer');
+  mainClass.set('org.kku.fx.iconify.main.IconifyViewer');
   mainModule.set('org.kku.fx');
 }
