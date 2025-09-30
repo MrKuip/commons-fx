@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import org.kku.common.util.Project;
 import org.kku.fx.scene.control.Filter;
 import org.kku.fx.scene.control.FilterPane;
 import org.kku.fx.scene.control.TabPaneNode;
@@ -68,6 +69,11 @@ public class IconifyViewer
   private MultipleSelectModel<String> m_selectedCategories;
   private MultipleSelectModel<Category> m_selectedCategories2;
   private ObservableMap<FilterType, Predicate<Icon>> m_filterByIdMap = FXCollections.observableHashMap();
+
+  static
+  {
+    Project.init("IconifyViewer");
+  }
 
   private enum FilterType
   {
