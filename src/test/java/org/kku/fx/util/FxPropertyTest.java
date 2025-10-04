@@ -33,7 +33,7 @@ public class FxPropertyTest
 
     appProperties = AppProperties.get(getClass());
 
-    type = appProperties.createAppPropertyType(propertyKey, Converters.getStringConverter());
+    type = appProperties.createAppPropertyType(propertyKey, Converters.getStringConverter(), null);
     property = type.forSubject(subject, propertyValue);
     fxProperty = FxProperty.property(property);
 

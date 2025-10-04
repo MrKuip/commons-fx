@@ -88,11 +88,6 @@ public class ColorPalette
       return FxProperty.property(mi_preference);
     }
 
-    public ObservableValue<Color> colorProperty(double brightness)
-    {
-      return colorProperty().map((a) -> getColor(brightness));
-    }
-
     public Color getColor(double brightness)
     {
       if (brightness < 0.0)
