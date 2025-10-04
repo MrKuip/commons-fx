@@ -6,7 +6,7 @@ import org.kku.common.util.AppSettings;
 import org.kku.common.util.SuppressFBWarnings;
 import org.kku.fx.ui.util.FxIconUtil;
 import org.kku.fx.util.FxProperty;
-import org.kku.iconify.ui.FxIcon.IconSize;
+import org.kku.iconify.ui.AbstractIcon.IconSize;
 import org.tbee.javafx.scene.layout.MigPane;
 import javafx.beans.binding.StringExpression;
 import javafx.geometry.Point2D;

@@ -8,6 +8,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import org.kku.iconify.ui.FxIcon;
+import org.kku.iconify.ui.FxIcons;
 import org.tbee.javafx.scene.layout.MigPane;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -22,7 +23,7 @@ public class SVGEditor
 
   public SVGEditor(FxIcon fxIcon)
   {
-    m_icon = new FxIcon(fxIcon).size(ICON_SIZE);
+    m_icon = FxIcons.create(fxIcon).size(ICON_SIZE);
     m_editor = createEditor();
   }
 

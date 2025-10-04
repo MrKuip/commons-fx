@@ -1,7 +1,7 @@
 package org.kku.fx.ui.util;
 
-import org.kku.iconify.ui.FxIcon;
-import org.kku.iconify.ui.FxIcon.IconSize;
+import org.kku.iconify.ui.AbstractIcon.IconSize;
+import org.kku.iconify.ui.FxIcons;
 import org.tbee.javafx.scene.layout.MigPane;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -47,7 +47,7 @@ public class Notifications
   {
     Node node;
 
-    node = new MessageItemView(new FxIcon("mdi-information").size(IconSize.LARGE).getNode(), titleExpression,
+    node = new MessageItemView(FxIcons.create("mdi-information").size(IconSize.LARGE).getNode(), titleExpression,
         textExpression, MESSAGE_SHOW_DURATION_IN_SECONDS);
 
     m_instance.getView().getChildren().add(0, node);
