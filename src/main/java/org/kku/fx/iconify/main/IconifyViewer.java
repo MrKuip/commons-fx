@@ -21,7 +21,6 @@ import org.kku.iconify.data.IconSetData.IconData.Category;
 import org.kku.iconify.data.IconSets;
 import org.kku.iconify.ui.AbstractIcon.IconSize;
 import org.kku.iconify.ui.FxIcon;
-import org.kku.iconify.ui.FxIcons;
 import org.kku.iconify.ui.SwingIcon;
 import org.tbee.javafx.scene.layout.MigPane;
 import javafx.application.Application;
@@ -120,7 +119,7 @@ public class IconifyViewer
     Node menuButton;
     TextField filterField;
 
-    filterLabel = FxIcons.create("mdi-filter").size(IconSize.MEDIUM).getNode();
+    filterLabel = new FxIcon("mdi-filter").size(IconSize.MEDIUM).getNode();
 
     filterField = new TextField();
     filterField.setPromptText("Filter by name...");
@@ -184,7 +183,7 @@ public class IconifyViewer
           m_selectedCategories2.getSelectedItems()));
     });
 
-    menuButton = new Button(null, FxIcons.create("mdi-menu").size(IconSize.MEDIUM).getNode());
+    menuButton = new Button(null, new FxIcon("mdi-menu").size(IconSize.MEDIUM).getNode());
 
     FilterPane<Icon> filterPane = new FilterPane<>(filter -> setFilter(filter));
     filterPane.addFilter(new Filter<>("Search ", "in", "mdi", icon -> icon.getName().contains("mdi")), false);
@@ -261,7 +260,7 @@ public class IconifyViewer
         box = new MigPane("gap 1 0 0 0", "[][]push[]", "[][][]");
         box.setStyle("-fx-background-color: lightgray;");
 
-        button = new Button("", FxIcons.create("mdi-checkboxes-marked").size(IconSize.SMALL).getNode());
+        button = new Button("", new FxIcon("mdi-checkboxes-marked").size(IconSize.SMALL).getNode());
         button.setStyle("-fx-background-radius: 0;" + // Rounded corners
             "-fx-border-radius: 0;" + // Border radius to match
             "");
@@ -274,7 +273,7 @@ public class IconifyViewer
         });
         box.add(button, "grow");
 
-        button = new Button("", FxIcons.create("mdi-checkboxes-blank-outline").size(IconSize.SMALL).getNode());
+        button = new Button("", new FxIcon("mdi-checkboxes-blank-outline").size(IconSize.SMALL).getNode());
         button.setStyle("-fx-background-radius: 0;" + // Rounded corners
             "-fx-border-radius: 0;" + // Border radius to match
             "");
@@ -287,7 +286,7 @@ public class IconifyViewer
         });
         box.add(button, "grow");
 
-        button = new Button("", FxIcons.create("mdi-cancel-box").size(IconSize.SMALL).getNode());
+        button = new Button("", new FxIcon("mdi-cancel-box").size(IconSize.SMALL).getNode());
         button.setStyle("-fx-background-radius: 0;" + // Rounded corners
             "-fx-border-radius: 0;" + // Border radius to match
             "");
@@ -658,7 +657,7 @@ public class IconifyViewer
     {
       mi_iconData = iconData;
       mi_idLowerCase = getId().toLowerCase();
-      mi_fxIcon = FxIcons.create(iconData).size(IconSize.HUGE);
+      mi_fxIcon = new FxIcon(iconData).size(IconSize.HUGE);
     }
 
     public IconData getIconData()

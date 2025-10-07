@@ -2,7 +2,6 @@ package org.kku.fx.ui.util;
 
 import org.kku.iconify.ui.AbstractIcon.IconSize;
 import org.kku.iconify.ui.FxIcon;
-import org.kku.iconify.ui.FxIcons;
 import javafx.scene.Node;
 
 public class FxIconUtil
@@ -23,6 +22,6 @@ public class FxIconUtil
 
   public static FxIcon createFxIcon(String iconName, IconSize iconSize)
   {
-    return FxIcons.create(iconName).size(iconSize);
+    return new FxIcon(iconName).size(iconSize);
   }
 }

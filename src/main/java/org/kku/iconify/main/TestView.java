@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.kku.iconify.data.IconSetData;
 import org.kku.iconify.data.IconSets;
 import org.kku.iconify.ui.AbstractIcon.IconSize;
-import org.kku.iconify.ui.FxIcons;
+import org.kku.iconify.ui.FxIcon;
 import org.tbee.javafx.scene.layout.MigPane;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -79,15 +79,15 @@ public class TestView
 
     box = new MigPane("debug, insets 0, gap 0, ", "[fill]push[]", "[][][]");
     box.setStyle("-fx-background-color: lightblue; -fx-padding: 0;"); // For visibility
-    button = new Button("Select all", FxIcons.create("mdi-checkboxes-marked").size(IconSize.MEDIUM).getNode());
+    button = new Button("Select all", new FxIcon("mdi-checkboxes-marked").size(IconSize.MEDIUM).getNode());
     button.setAlignment(Pos.BASELINE_LEFT);
     button.setMaxWidth(Double.MAX_VALUE);
     box.add(button, "grow");
 
-    Label label = new Label("", FxIcons.create("mdi-cancel-box").size(IconSize.MEDIUM).getNode());
+    Label label = new Label("", new FxIcon("mdi-cancel-box").size(IconSize.MEDIUM).getNode());
     box.add(label, "align right, wrap");
 
-    button = new Button("Deselect all", FxIcons.create("mdi-checkboxes-blank-outline").size(IconSize.MEDIUM).getNode());
+    button = new Button("Deselect all", new FxIcon("mdi-checkboxes-blank-outline").size(IconSize.MEDIUM).getNode());
     button.setAlignment(Pos.BASELINE_LEFT);
     button.setMaxWidth(Double.MAX_VALUE);
     box.add(button, "grow");

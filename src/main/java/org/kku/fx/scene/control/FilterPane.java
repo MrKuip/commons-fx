@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 import org.kku.fx.ui.util.FxIconUtil;
 import org.kku.iconify.ui.AbstractIcon.IconColor;
 import org.kku.iconify.ui.AbstractIcon.IconSize;
-import org.kku.iconify.ui.FxIcons;
+import org.kku.iconify.ui.FxIcon;
 import org.tbee.javafx.scene.layout.MigPane;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringExpression;
@@ -138,7 +138,7 @@ public class FilterPane<T>
 
     // Wrap in HBox because adding a mouselistener to the ImageView does not work!
     // (Bug in JavaFX!)
-    closeNode = new HBox(FxIcons.create("mdi-close").size(IconSize.MEDIUM).color(IconColor.RED).getNode());
+    closeNode = new HBox(new FxIcon("mdi-close").size(IconSize.MEDIUM).color(IconColor.RED).getNode());
     closeNode.setStyle("-fx-padding:2px 0px 1px 0px;");
 
     filterNode = translate(new Label(filter.getFilterValue(), closeNode));
