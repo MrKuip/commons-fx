@@ -6,6 +6,9 @@ import org.kku.common.util.AppPreferences;
 import org.kku.common.util.AppProperties.AppProperty;
 import org.kku.fx.util.Converters;
 import org.kku.fx.util.FxProperty;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -83,9 +86,19 @@ public class ColorPalette
       return mi_preference.get();
     }
 
-    public ObservableValue<Color> colorProperty()
+    public ObjectProperty<Color> colorProperty()
     {
       return FxProperty.property(mi_preference);
+    }
+
+    public ObservableValue<Color> colorProperty(double brightness)
+    {
+      SimpleObjectProperty<Color> colorProperty;
+
+      colorProperty = new SimpleObjectProperty<>();
+      colorProperty.bind(Bindings.createObjectBinding(() -> getColor(brightness), colorProperty()));
+
+      return colorProperty;
     }
 
     public Color getColor(double brightness)
