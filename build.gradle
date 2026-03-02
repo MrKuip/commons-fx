@@ -46,7 +46,7 @@ dependencies {
   implementation 'org.kku:iconify4j:1.0'
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
   implementation 'org.kku:commons-base:1.0.1'
-  implementation 'com.miglayout:miglayout-javafx:11.4.2'
+  implementation 'com.miglayout:miglayout-javafx:11.4.3'
 
   testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
   testImplementation 'org.junit.platform:junit-platform-launcher'
