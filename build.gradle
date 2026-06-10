@@ -19,10 +19,13 @@ test
   useJUnitPlatform()
   testLogging {
     showStandardStreams = true 
-    afterTest { descriptor , result -> 
+  }
+  addTestListener(new TestListener() {
+    @Override
+    void afterTest(TestDescriptor descriptor, TestResult result) {
       logger.lifecycle("Test: " + descriptor.getClassName() + " " + descriptor.getName() + " -> " + result)
     }
-  }
+  })
 }
 
 
