@@ -6,7 +6,6 @@ module org.kku.fx
   requires transitive org.kku.iconify4j;
   requires transitive org.kku.common;
   requires transitive com.miglayout.javafx;
-  requires com.fasterxml.jackson.databind;
   requires java.xml;
   requires java.desktop;
 
