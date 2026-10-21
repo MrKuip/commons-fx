@@ -48,7 +48,7 @@ java {
 }
 
 dependencies {
-    ['javafx-base', 'javafx-graphics', 'javafx-controls', 'javafx-media', 'javafx-web', 'javafx-swing'].each { m ->
+    ['javafx-base', 'javafx-graphics', 'javafx-controls', 'javafx-swing'].each { m ->
     implementation "org.openjfx:$m:$fxVersion"
     implementation "org.openjfx:$m:$fxVersion:$fxClassifier"
   }
